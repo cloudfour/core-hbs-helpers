@@ -17,9 +17,11 @@ tape('random', function (test) {
   result = template({ items: items });
   test.ok(items.indexOf(result) !== -1, 'Works');
 
-  try {
-    result = template({ items: 'not an array' });
-  } catch (err) {
-    test.pass('Errors when passed a non-array');
-  }
+  test.throws(
+    function () {
+      template({ items: 'not an array' })
+    },
+    /passed an Array\.$/,
+    'Errors when passed a non-array'
+  );
 });
