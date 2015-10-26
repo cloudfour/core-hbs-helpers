@@ -1,13 +1,13 @@
 'use strict';
 
-var slug = require('../').slug;
+var toSlug = require('../').toSlug;
 var tape = require('tape');
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper(slug.name, slug);
+Handlebars.registerHelper(toSlug.name, toSlug);
 
-tape('slug', function (test) {
-  var template = Handlebars.compile('{{slug title}}');
+tape('toSlug', function (test) {
+  var template = Handlebars.compile('{{toSlug title}}');
   var actual;
   var expected;
 

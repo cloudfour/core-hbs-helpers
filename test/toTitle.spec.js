@@ -1,13 +1,13 @@
 'use strict';
 
-var displayName = require('../').displayName;
+var toTitle = require('../').toTitle;
 var tape = require('tape');
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper(displayName.name, displayName);
+Handlebars.registerHelper(toTitle.name, toTitle);
 
-tape('displayName', function (test) {
-  var template = Handlebars.compile('{{displayName title}}');
+tape('toTitle', function (test) {
+  var template = Handlebars.compile('{{toTitle title}}');
   var expected = 'title';
   var actual = template({
     title: '01 title'
