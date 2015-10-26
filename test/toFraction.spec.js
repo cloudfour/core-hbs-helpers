@@ -1,13 +1,13 @@
 'use strict';
 
-var fraction = require('../').fraction;
+var toFraction = require('../').toFraction;
 var tape = require('tape');
 var Entities = require('html-entities').Html5Entities;
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper(fraction.name, fraction);
+Handlebars.registerHelper(toFraction.name, toFraction);
 
-tape('fraction', function (test) {
+tape('toFraction', function (test) {
   var entities = new Entities();
   var actual;
   var expected;
@@ -15,14 +15,14 @@ tape('fraction', function (test) {
 
   test.plan(2);
 
-  template = Handlebars.compile('{{{fraction number}}}');
+  template = Handlebars.compile('{{{toFraction number}}}');
   expected = '1¼';
   actual = entities.decode(template({
     number: 1.25
   }));
   test.equal(actual, expected, 'Works');
 
-  template = Handlebars.compile('{{{fraction number}}}');
+  template = Handlebars.compile('{{{toFraction number}}}');
   expected = '1';
   actual = entities.decode(template({
     number: 1
