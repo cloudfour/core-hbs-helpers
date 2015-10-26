@@ -11,16 +11,24 @@ tape('timestamp', function (test) {
   var actual;
   var expected;
 
-  test.plan(3);
+  test.plan(4);
 
   template = Handlebars.compile('{{timestamp date}}');
   expected = '1995-08-09';
-  actual = template({ date: Date.parse('Aug 9, 1995') });
+  actual = template({ date: new Date('Aug 9, 1995') });
   test.equal(actual, expected, 'Works');
+
+  test.throws(
+    function () {
+      template({ date: 'abc123' })
+    },
+    /Date-parseable value\.$/,
+    'Errors when passed an invalid date value'
+  );
 
   template = Handlebars.compile('{{timestamp date format="MMM Do YY"}}');
   expected = 'Aug 9th 95';
-  actual = template({ date: Date.parse('Aug 9, 1995') });
+  actual = template({ date: new Date('Aug 9, 1995') });
   test.equal(actual, expected, 'Works with a specified format');
 
   template = Handlebars.compile('{{timestamp date format="YYYY"}}');
