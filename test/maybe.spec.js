@@ -1,14 +1,14 @@
 'use strict';
 
-var randomIf = require('../').randomIf;
+var maybe = require('../').maybe;
 var tape = require('tape');
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper(randomIf.name, randomIf);
+Handlebars.registerHelper(maybe.name, maybe);
 
-tape('randomIf', function (test) {
+tape('maybe', function (test) {
   var template = Handlebars.compile(
-    '{{#randomIf}}pass{{else}}fail{{/randomIf}}'
+    '{{#maybe}}pass{{else}}fail{{/maybe}}'
   );
   var result = template();
   var isMatch = result.search(/(pass|fail)/) !== -1;
