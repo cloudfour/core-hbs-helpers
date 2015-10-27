@@ -11,7 +11,7 @@ tape('compare', function (test) {
   var template;
   var actual;
 
-  test.plan(9);
+  test.plan(10);
 
   template = Handlebars.compile('{{#compare a "==" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: true });
@@ -28,6 +28,10 @@ tape('compare', function (test) {
   template = Handlebars.compile('{{#compare a "!==" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: 1 });
   test.equal(actual, expected, 'Works with !==');
+
+  template = Handlebars.compile('{{#compare a "||" b}}✔︎{{/compare}}');
+  actual = template({ a: false, b: true });
+  test.equal(actual, expected, 'Works with ||');
 
   template = Handlebars.compile('{{#compare a "<" b}}✔︎{{/compare}}');
   actual = template({ a: 0, b: 1 });
