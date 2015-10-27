@@ -11,7 +11,7 @@ tape('compare', function (test) {
   var template;
   var actual;
 
-  test.plan(10);
+  test.plan(12);
 
   template = Handlebars.compile('{{#compare a "==" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: true });
@@ -52,4 +52,22 @@ tape('compare', function (test) {
   template = Handlebars.compile('{{#compare a "typeof" "Array"}}✔︎{{/compare}}');
   actual = template({ a: [] });
   test.equal(actual, expected, 'Works with typeof');
+
+  template = Handlebars.compile('{{#compare a "foo" b}}✔︎{{/compare}}');
+  test.throws(
+    function () {
+      template({ a: 1, b: 2 });
+    },
+    /needs a valid operator\.$/,
+    'Errors with an invalid operator.'
+  );
+
+  template = Handlebars.compile('{{#compare a}}✔︎{{/compare}}');
+  test.throws(
+    function () {
+      template({ a: 1 });
+    },
+    /needs two arguments\.$/,
+    'Errors with missing arguments.'
+  );
 });
