@@ -16,9 +16,7 @@ tape('timestamp', function (test) {
   test.plan(7);
 
   template = Handlebars.compile('{{timestamp}}');
-  expected = true;
-  actual = (template().match(iso8601).length > 0);
-  test.equal(actual, expected, 'Works');
+  test.ok(template().match(iso8601).length > 0, 'Works');
 
   template = Handlebars.compile('{{timestamp format="YYYY"}}');
   expected = today.getFullYear().toString();
