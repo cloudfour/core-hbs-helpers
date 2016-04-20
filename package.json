@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "dependencies": {
+    "handlebars": "^4.0.3",
     "moment": "^2.10.6",
     "ramda": "^0.18.0",
     "require-dir": "^0.3.0"
   },
   "devDependencies": {
-    "handlebars": "^4.0.3",
     "html-entities": "^1.2.0",
     "tap-spec": "^4.1.0",
     "tape": "^4.2.1"
