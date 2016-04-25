@@ -11,7 +11,7 @@ tape('defaultTo', function (test) {
   var expected;
   var actual;
 
-  test.plan(3);
+  test.plan(4);
 
   template = Handlebars.compile('{{defaultTo doesExist "Goodbye"}}');
   expected = 'Hello';
@@ -27,4 +27,9 @@ tape('defaultTo', function (test) {
   expected = '';
   actual = template({});
   test.equal(actual, expected, 'Works with value and fallback not set');
+
+  template = Handlebars.compile('{{defaultTo doesNotExist doesExist "Goodbye"}}');
+  expected = 'Hello';
+  actual = template({ doesExist: 'Hello' });
+  test.equal(actual, expected, 'Works with variable arguments');
 });
