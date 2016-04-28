@@ -1,6 +1,6 @@
 {
   "name": "core-hbs-helpers",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Handlebars helpers that we usually need.",
   "main": "index.js",
   "files": [
@@ -30,7 +30,8 @@
     "handlebars": "^4.0.3",
     "moment": "^2.10.6",
     "ramda": "^0.18.0",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "tinycolor2": "^1.3.0"
   },
   "devDependencies": {
     "html-entities": "^1.2.0",
