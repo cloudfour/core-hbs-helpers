@@ -1,6 +1,6 @@
 {
   "name": "core-hbs-helpers",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Handlebars helpers that we usually need.",
   "main": "index.js",
   "files": [
