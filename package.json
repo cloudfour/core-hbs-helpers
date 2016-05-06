@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "dependencies": {
+    "capitalize": "^1.0.0",
     "chance": "^1.0.3",
     "handlebars": "^4.0.3",
     "moment": "^2.10.6",
