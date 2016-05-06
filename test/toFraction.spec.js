@@ -2,30 +2,26 @@
 
 var toFraction = require('../').toFraction;
 var tape = require('tape');
-var Entities = require('html-entities').Html5Entities;
 var Handlebars = require('handlebars');
 
 Handlebars.registerHelper(toFraction.name, toFraction);
 
 tape('toFraction', function (test) {
-  var entities = new Entities();
-  var actual;
+  var template = Handlebars.compile('{{{toFraction number}}}');
   var expected;
-  var template;
+  var actual;
 
-  test.plan(2);
+  test.plan(3);
 
-  template = Handlebars.compile('{{{toFraction number}}}');
   expected = '1¼';
-  actual = entities.decode(template({
-    number: 1.25
-  }));
+  actual = template({ number: 1.25 });
   test.equal(actual, expected, 'Works');
 
-  template = Handlebars.compile('{{{toFraction number}}}');
   expected = '1';
-  actual = entities.decode(template({
-    number: 1
-  }));
+  actual = template({ number: 1 });
   test.equal(actual, expected, 'Ignores non-fractions');
+
+  expected = '1.42';
+  actual = template({ number: 1.42 });
+  test.equal(actual, expected, 'Ignores fractions with no applicable vulgarity');
 });
