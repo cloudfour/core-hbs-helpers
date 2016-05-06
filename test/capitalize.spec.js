@@ -1,13 +1,13 @@
 'use strict';
 
-var capitalizeFirst = require('../').capitalizeFirst;
+var capitalize = require('../').capitalize;
 var tape = require('tape');
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper(capitalizeFirst.name, capitalizeFirst);
+Handlebars.registerHelper(capitalize.name, capitalize);
 
-tape('capitalizeFirst', function (test) {
-  var template = Handlebars.compile('{{capitalizeFirst content}}');
+tape('capitalize', function (test) {
+  var template = Handlebars.compile('{{capitalize content}}');
   var expected;
   var actual;
 
