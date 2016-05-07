@@ -1,0 +1,4 @@
+extends: "@cloudfour/eslint-config"
+
+rules:
+  strict: 0
