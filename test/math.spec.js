@@ -67,7 +67,7 @@ tape('math', function (test) {
     function () {
       template();
     },
-    /needs two arguments\.$/,
+    /needs at least two arguments\.$/,
     'Errors with too few arguments'
   );
 });
