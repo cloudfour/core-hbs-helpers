@@ -11,7 +11,7 @@ tape('math', function (test) {
   var actual;
   var expected;
 
-  test.plan(10);
+  test.plan(11);
 
   template = Handlebars.compile('{{math 1 "+" 2}}');
   actual = template();
@@ -37,6 +37,11 @@ tape('math', function (test) {
   actual = template();
   expected = '2';
   test.equal(actual, expected, 'Works with %');
+
+  template = Handlebars.compile('{{math 2 "**" 3}}');
+  actual = template();
+  expected = '8';
+  test.equal(actual, expected, 'Works with **');
 
   template = Handlebars.compile('{{math 1 "++"}}');
   actual = template();
