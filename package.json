@@ -30,6 +30,7 @@
     "capitalize": "^1.0.0",
     "chance": "^1.0.3",
     "handlebars": "^4.0.3",
+    "ltx": "^2.3.0",
     "moment": "^2.10.6",
     "num2fraction": "^1.2.2",
     "ramda": "^0.18.0",
