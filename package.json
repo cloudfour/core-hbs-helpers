@@ -1,31 +1,23 @@
 {
-  "name": "core-hbs-helpers",
+  "name": "@cloudfour/hbs-helpers",
   "version": "0.6.0",
-  "description": "Handlebars helpers that we usually need.",
+  "description": "Handlebars helpers used for various Cloud Four projects.",
+  "author": "Cloud Four (http://cloudfour.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/cloudfour/core-hbs-helpers",
+  "repository": "cloudfour/core-hbs-helpers",
+  "bugs": "https://github.com/cloudfour/core-hbs-helpers/issues",
+  "keywords": [
+    "handlebars",
+    "helpers",
+    "mustache",
+    "template"
+  ],
   "main": "index.js",
   "files": [
     "lib",
     "index.js"
   ],
-  "scripts": {
-    "test": "tape test/*.spec.js | tap-spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cloudfour/core-hbs-helpers.git"
-  },
-  "keywords": [
-    "handlebars",
-    "mustache",
-    "template",
-    "helpers"
-  ],
-  "author": "Cloud Four",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cloudfour/core-hbs-helpers/issues"
-  },
-  "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "dependencies": {
     "capitalize": "^1.0.0",
     "chance": "^1.0.3",
@@ -40,5 +32,10 @@
   "devDependencies": {
     "tap-spec": "^4.1.0",
     "tape": "^4.2.1"
+  },
+  "scripts": {
+    "test": "tape test/*.spec.js | tap-spec",
+    "prepublish": "npm test",
+    "preversion": "npm test"
   }
 }
