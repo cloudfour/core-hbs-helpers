@@ -1,6 +1,6 @@
 {
   "name": "@cloudfour/hbs-helpers",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Handlebars helpers used for various Cloud Four projects.",
   "author": "Cloud Four (http://cloudfour.com)",
   "license": "MIT",
