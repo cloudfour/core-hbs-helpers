@@ -3,6 +3,7 @@
 var timestamp = require('../').timestamp;
 var tape = require('tape');
 var Handlebars = require('handlebars');
+var moment = require('moment');
 
 Handlebars.registerHelper(timestamp.name, timestamp);
 
@@ -10,13 +11,12 @@ tape('timestamp', function (test) {
   var template;
   var actual;
   var expected;
-  var iso8601 = /(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})/;
   var today = new Date();
 
   test.plan(7);
 
   template = Handlebars.compile('{{timestamp}}');
-  test.ok(template().match(iso8601).length > 0, 'Works');
+  test.ok(moment(template()).isValid(), 'Works');
 
   template = Handlebars.compile('{{timestamp format="YYYY"}}');
   expected = today.getFullYear().toString();
