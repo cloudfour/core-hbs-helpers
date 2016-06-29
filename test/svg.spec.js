@@ -13,7 +13,7 @@ tape('svg', function (test) {
   var actual;
   var expected = '<svg viewBox="0 0 1 1"><g/></svg>';
 
-  test.plan(7);
+  test.plan(8);
 
   template = Handlebars.compile('{{svg "test/fixtures/svg/test.svg"}}');
   actual = template();
@@ -31,6 +31,11 @@ tape('svg', function (test) {
   actual = template();
   expected = '<svg viewBox="0 0 1 1" height="10" width="10" class="icon"><g/></svg>';
   test.equal(actual, expected, 'Works with attributes in hash');
+
+  template = Handlebars.compile('{{#svg "test/fixtures/svg/test"}}<title>foo</title>{{/svg}}');
+  actual = template();
+  expected = '<svg viewBox="0 0 1 1"><title>foo</title><g/></svg>';
+  test.equal(actual, expected, 'Works with content');
 
   template = Handlebars.compile('{{svg}}');
   test.throws(
