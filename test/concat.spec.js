@@ -24,7 +24,6 @@ tape('concat', function (test) {
   result = template();
   test.equal(result, '2true', 'Works with non-strings');
 
-
   template = Handlebars.compile('{{concat}}');
   test.throws(
     function () {
