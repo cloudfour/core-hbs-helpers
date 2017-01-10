@@ -1,5 +1,7 @@
 # Core Handlebars Helpers
 
+[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/cloudfour/core-hbs-helpers/)
+
 ## Usage
 
 ```
