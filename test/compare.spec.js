@@ -11,43 +11,79 @@ tape('compare', function (test) {
   var template;
   var actual;
 
-  test.plan(11);
+  test.plan(20);
 
   template = Handlebars.compile('{{#compare a "==" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: true });
-  test.equal(actual, expected, 'Works with ==');
-
+  test.equal(actual, expected, 'Works as block with ==');
+  
   template = Handlebars.compile('{{#compare a "===" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: true });
-  test.equal(actual, expected, 'Works with ===');
-
+  test.equal(actual, expected, 'Works as block with ===');
+  
   template = Handlebars.compile('{{#compare a "!=" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: false });
-  test.equal(actual, expected, 'Works with !=');
-
+  test.equal(actual, expected, 'Works as block with !=');
+  
   template = Handlebars.compile('{{#compare a "!==" b}}✔︎{{/compare}}');
   actual = template({ a: true, b: 1 });
-  test.equal(actual, expected, 'Works with !==');
-
+  test.equal(actual, expected, 'Works as block with !==');
+  
   template = Handlebars.compile('{{#compare a "<" b}}✔︎{{/compare}}');
   actual = template({ a: 0, b: 1 });
-  test.equal(actual, expected, 'Works with <');
-
+  test.equal(actual, expected, 'Works as block with <');
+  
   template = Handlebars.compile('{{#compare a ">" b}}✔︎{{/compare}}');
   actual = template({ a: 1, b: 0 });
-  test.equal(actual, expected, 'Works with >');
-
+  test.equal(actual, expected, 'Works as block with >');
+  
   template = Handlebars.compile('{{#compare a "<=" b}}✔︎{{/compare}}');
   actual = template({ a: 0, b: 1 });
-  test.equal(actual, expected, 'Works with <=');
-
+  test.equal(actual, expected, 'Works as block with <=');
+  
   template = Handlebars.compile('{{#compare a ">=" b}}✔︎{{/compare}}');
   actual = template({ a: 1, b: 0 });
-  test.equal(actual, expected, 'Works with >=');
-
+  test.equal(actual, expected, 'Works as block with >=');
+  
   template = Handlebars.compile('{{#compare a "typeof" "Array"}}✔︎{{/compare}}');
   actual = template({ a: [] });
-  test.equal(actual, expected, 'Works with typeof');
+  test.equal(actual, expected, 'Works as block with typeof');
+  
+  template = Handlebars.compile('{{#if (compare a "==" b)}}✔︎{{/if}}');
+  actual = template({ a: true, b: true });
+  test.equal(actual, expected, 'Works inline with ==');
+  
+  template = Handlebars.compile('{{#if (compare a "===" b)}}✔︎{{/if}}');
+  actual = template({ a: true, b: true });
+  test.equal(actual, expected, 'Works inline with ===');
+  
+  template = Handlebars.compile('{{#if (compare a "!=" b)}}✔︎{{/if}}');
+  actual = template({ a: true, b: false });
+  test.equal(actual, expected, 'Works inline with !=');
+  
+  template = Handlebars.compile('{{#if (compare a "!==" b)}}✔︎{{/if}}');
+  actual = template({ a: true, b: 1 });
+  test.equal(actual, expected, 'Works inline with !==');
+  
+  template = Handlebars.compile('{{#if (compare a "<" b)}}✔︎{{/if}}');
+  actual = template({ a: 0, b: 1 });
+  test.equal(actual, expected, 'Works inline with <');
+  
+  template = Handlebars.compile('{{#if (compare a ">" b)}}✔︎{{/if}}');
+  actual = template({ a: 1, b: 0 });
+  test.equal(actual, expected, 'Works inline with >');
+  
+  template = Handlebars.compile('{{#if (compare a "<=" b)}}✔︎{{/if}}');
+  actual = template({ a: 0, b: 1 });
+  test.equal(actual, expected, 'Works inline with <=');
+  
+  template = Handlebars.compile('{{#if (compare a ">=" b)}}✔︎{{/if}}');
+  actual = template({ a: 1, b: 0 });
+  test.equal(actual, expected, 'Works inline with >=');
+  
+  template = Handlebars.compile('{{#if (compare a "typeof" "Array")}}✔︎{{/if}}');
+  actual = template({ a: [] });
+  test.equal(actual, expected, 'Works inline with typeof');
 
   template = Handlebars.compile('{{#compare a "foo" b}}✔︎{{/compare}}');
   test.throws(
@@ -57,7 +93,7 @@ tape('compare', function (test) {
     /needs a valid operator\.$/,
     'Errors with an invalid operator.'
   );
-
+  
   template = Handlebars.compile('{{#compare a}}✔︎{{/compare}}');
   test.throws(
     function () {
