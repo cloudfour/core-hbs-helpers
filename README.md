@@ -22,7 +22,7 @@ Object.keys(helpers).forEach(function (key) {
 ```js
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
-var helpers = require('core-hbs-helpers');
+var helpers = require('@cloudfour/hbs-helpers');
 
 gulp.task('default', function () {
   return gulp.src('*.hbs')
