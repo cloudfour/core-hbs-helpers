@@ -10,11 +10,11 @@ npm install --save-dev cloudfour/core-hbs-helpers.git
 
 ### Using vanilla Handlebars
 ```js
-var helpers = require('core-hbs-helpers');
+var helpers = require('@cloudfour/hbs-helpers');
 var Handlebars = require('handlebars');
 
-helpers.forEach(function (helper) {
-  Handlebars.registerHelper(helper.name, helper);
+Object.keys(helpers).forEach(function (key) {
+  Handlebars.registerHelper(key, helpers[key]);
 });
 ```
 
@@ -22,7 +22,7 @@ helpers.forEach(function (helper) {
 ```js
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
-var helpers = require('core-hbs-helpers');
+var helpers = require('@cloudfour/hbs-helpers');
 
 gulp.task('default', function () {
   return gulp.src('*.hbs')
