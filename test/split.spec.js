@@ -32,4 +32,4 @@ tape('split', function (test) {
   expected = "<li>1</li><li>35</li>";
   actual = Handlebars.compile('{{#each (split 1.35 ".")}}<li>{{this}}</li>{{/each}}');
   test.equal(actual(), expected, 'Converts a decimal to a string and splits it by a period');
-}); 
+});
