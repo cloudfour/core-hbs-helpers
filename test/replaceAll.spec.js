@@ -11,7 +11,7 @@ tape('replaceAll', function (test) {
   var actual;
   var expected;
 
-  test.plan(4);
+  test.plan(5);
 
   expected = '9';
   actual = Handlebars.compile('{{replaceAll "9:00" ":00" ""}}');
@@ -28,4 +28,8 @@ tape('replaceAll', function (test) {
   expected = '1000000000 bucks';
   actual = Handlebars.compile('{{replaceAll "30 bucks" 30 1000000000}}');
   test.equal(actual(), expected, 'Replaces a number in a string');
+
+  expected = '1111111111';
+  actual = Handlebars.compile('{{replaceAll 1000000000 0 1}}');
+  test.equal(actual(), expected, 'Converts a number to a string and then replaces all instances of a specific digit');  
 });
