@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-npm install --save-dev cloudfour/core-hbs-helpers.git
+npm install --save-dev @cloudfour/hbs-helpers
 ```
 
 ### Using vanilla Handlebars
