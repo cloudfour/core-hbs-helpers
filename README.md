@@ -35,4 +35,4 @@ gulp.task('default', function () {
 
 ## Documenation
 
-See our [doxdox site](https://doxdox.org/cloudfour/core-hbs-helpers/) for complete documenation of each helper.
+See our [doxdox site](https://doxdox.org/cloudfour/core-hbs-helpers/) for complete documentation of each helper.
