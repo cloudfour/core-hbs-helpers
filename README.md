@@ -1,6 +1,6 @@
 # Core Handlebars Helpers
 
-[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/cloudfour/core-hbs-helpers/)
+[![NPM version](https://img.shields.io/npm/v/@cloudfour/hbs-helpers.svg)](https://www.npmjs.com/package/@cloudfour/hbs-helpers) [![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/cloudfour/core-hbs-helpers/)
 
 ## Usage
 
@@ -33,3 +33,6 @@ gulp.task('default', function () {
 });
 ```
 
+## Documenation
+
+See our [doxdox site](https://doxdox.org/cloudfour/core-hbs-helpers/) for complete documentation of each helper.
