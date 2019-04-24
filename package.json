@@ -19,7 +19,7 @@
     "index.js"
   ],
   "dependencies": {
-    "capitalize": "^1.0.0",
+    "capitalize": "^2.0.0",
     "chance": "^1.0.3",
     "handlebars": "^4.0.3",
     "ltx": "^2.3.0",
