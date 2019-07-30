@@ -33,6 +33,6 @@ gulp.task('default', function () {
 });
 ```
 
-## Documenation
+## Documentation
 
 See our [doxdox site](https://doxdox.org/cloudfour/core-hbs-helpers/) for complete documentation of each helper.
