@@ -1,6 +1,6 @@
 # Core Handlebars Helpers
 
-[![NPM version](https://img.shields.io/npm/v/@cloudfour/hbs-helpers.svg)](https://www.npmjs.com/package/@cloudfour/hbs-helpers) [![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/cloudfour/core-hbs-helpers/) [![Renovate Status](https://badges.renovateapi.com/github/cloudfour/core-hbs-helpers)](https://renovatebot.com/)
+[![NPM version](https://img.shields.io/npm/v/@cloudfour/hbs-helpers.svg)](https://www.npmjs.com/package/@cloudfour/hbs-helpers) [![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/cloudfour/core-hbs-helpers/) [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 
 ## Usage
 
