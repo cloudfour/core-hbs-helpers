@@ -48,6 +48,8 @@ tape('timestamp', function (test) {
         result += '0';
       }
       result += offset;
+    } else if (offset === 0) {
+      result = '+0000'
     }
     return result;
   })(today);
