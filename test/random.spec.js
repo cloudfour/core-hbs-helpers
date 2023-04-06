@@ -28,7 +28,7 @@ tape('random', function (test) {
 
   template = Handlebars.compile('{{random "state"}}');
   result = template();
-  test.ok(R.find(R.propEq('abbreviation', result))(chance.states()), 'Works with method');
+  test.ok(R.find(R.propEq(result, 'abbreviation'))(chance.states()), 'Works with method');
 
   template = Handlebars.compile('{{random "dollar" max=20}}');
   result = template();
