@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "capitalize": "2.0.4",
-    "chance": "1.1.12",
+    "chance": "1.1.13",
     "handlebars": "4.7.8",
     "ltx": "3.1.2",
     "moment": "2.30.1",
