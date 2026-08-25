@@ -35,7 +35,6 @@
   },
   "scripts": {
     "test": "tape test/*.spec.js | tap-spec",
-    "prepublish": "npm test",
     "preversion": "npm test"
   }
 }
