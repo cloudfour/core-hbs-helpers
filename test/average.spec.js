@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const average = require('../').average;
 
-Handlebars.registerHelper(average.name, average);
+Handlebars.registerHelper('average', average);
 
 tape('average', (test) => {
   let template;

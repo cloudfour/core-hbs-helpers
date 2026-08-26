@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const math = require('../').math;
 
-Handlebars.registerHelper(math.name, math);
+Handlebars.registerHelper('math', math);
 
 tape('math', (test) => {
   let template;

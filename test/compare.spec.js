@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const compare = require('../').compare;
 
-Handlebars.registerHelper(compare.name, compare);
+Handlebars.registerHelper('compare', compare);
 
 tape('compare', (test) => {
   const match = '✔︎';

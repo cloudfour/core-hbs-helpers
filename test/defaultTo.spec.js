@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const defaultTo = require('../').defaultTo;
 
-Handlebars.registerHelper(defaultTo.name, defaultTo);
+Handlebars.registerHelper('defaultTo', defaultTo);
 
 tape('defaultTo', (test) => {
   let template;

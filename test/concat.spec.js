@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const concat = require('../').concat;
 
-Handlebars.registerHelper(concat.name, concat);
+Handlebars.registerHelper('concat', concat);
 
 tape('concat', (test) => {
   let template;

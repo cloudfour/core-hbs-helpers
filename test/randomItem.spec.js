@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const randomItem = require('../').randomItem;
 
-Handlebars.registerHelper(randomItem.name, randomItem);
+Handlebars.registerHelper('randomItem', randomItem);
 
 tape('randomItem', (test) => {
   const items = ['a', 'b', 'c'];

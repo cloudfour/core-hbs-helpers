@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const toFraction = require('../').toFraction;
 
-Handlebars.registerHelper(toFraction.name, toFraction);
+Handlebars.registerHelper('toFraction', toFraction);
 
 tape('toFraction', (test) => {
   const template = Handlebars.compile('{{{toFraction number}}}');

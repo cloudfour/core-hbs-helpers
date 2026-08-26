@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const capitalize = require('../').capitalize;
 
-Handlebars.registerHelper(capitalize.name, capitalize);
+Handlebars.registerHelper('capitalize', capitalize);
 
 tape('capitalize', (test) => {
   const template = Handlebars.compile('{{capitalize content}}');

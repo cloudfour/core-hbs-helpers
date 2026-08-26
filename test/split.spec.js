@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const split = require('../').split;
 
-Handlebars.registerHelper(split.name, split);
+Handlebars.registerHelper('split', split);
 
 tape('split', (test) => {
   let actual;
