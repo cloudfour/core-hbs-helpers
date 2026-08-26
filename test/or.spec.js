@@ -12,7 +12,7 @@ tape('or', (test) => {
   let template;
   let actual;
 
-  test.plan(6);
+  test.plan(7);
 
   template = Handlebars.compile('{{#or a b}}✔︎{{else}}✘{{/or}}');
 
@@ -39,5 +39,14 @@ tape('or', (test) => {
     },
     /needs two arguments\.$/v,
     'Errors with missing arguments.'
+  );
+
+  template = Handlebars.compile('{{#or a b c}}✔︎{{/or}}');
+  test.throws(
+    () => {
+      template({ a: false, b: true, c: true })
+    },
+    /needs two arguments\.$/v,
+    'Errors with extra arguments.'
   );
 });

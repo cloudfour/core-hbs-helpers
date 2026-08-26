@@ -13,7 +13,7 @@ tape('compare', (test) => {
   let block;
   let inline;
 
-  test.plan(42);
+  test.plan(43);
 
   // Each operator is checked in both directions. A block helper that only ever
   // gets its truthy case asserted will happily pass with `options.inverse`
@@ -109,6 +109,17 @@ tape('compare', (test) => {
     },
     /needs two arguments\.$/v,
     'Errors with missing arguments.'
+  );
+
+  // This used to slip past the arity check and render the string "true",
+  // because the fourth value was mistaken for the options object.
+  block = Handlebars.compile('{{#compare a "==" b c}}✔︎{{/compare}}');
+  test.throws(
+    () => {
+      block({ a: 1, b: 1, c: 1 });
+    },
+    /needs two arguments\.$/v,
+    'Errors with extra arguments.'
   );
 });
 
