@@ -36,6 +36,13 @@ but never tagged, so their links point at the version-bump commits instead.
 
 ### Changed
 
+- **Breaking.** `and`, `or`, and `compare` reject too many values, not just too
+  few. Arity was previously read from `arguments.length`, which could only ever
+  catch the missing case: one value too many landed in the parameter holding
+  Handlebars' options object, and the helper carried on with the wrong thing in
+  hand. `{{#and a b c}}` and `{{#or a b c}}` failed with `TypeError: options.fn
+  is not a function`, and `{{#compare a "==" b c}}` rendered the string `true`
+  into the template. All three now raise the helper's own error.
 - **Breaking.** `average`, `capitalize`, `capitalizeWords`, and `toFixed` throw
   `TypeError` instead of `Error` when handed the wrong type. `TypeError` is
   still an `instanceof Error`, so `try`/`catch` is unaffected; only code
