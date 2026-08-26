@@ -12,7 +12,7 @@ tape('and', (test) => {
   let template;
   let actual;
 
-  test.plan(6);
+  test.plan(7);
 
   template = Handlebars.compile('{{#and a b}}✔︎{{else}}✘{{/and}}');
 
@@ -39,5 +39,14 @@ tape('and', (test) => {
     },
     /needs two arguments\.$/v,
     'Errors with missing arguments.'
+  );
+
+  template = Handlebars.compile('{{#and a b c}}✔︎{{/and}}');
+  test.throws(
+    () => {
+      template({ a: true, b: true, c: true })
+    },
+    /needs two arguments\.$/v,
+    'Errors with extra arguments.'
   );
 });
