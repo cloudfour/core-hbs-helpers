@@ -12,8 +12,13 @@ tape('timestamp', function (test) {
   var actual;
   var expected;
   var today = new Date();
+  var realTz = process.env.TZ;
 
-  test.plan(7);
+  test.plan(9);
+
+  test.teardown(function () {
+    setTimezone(realTz);
+  });
 
   template = Handlebars.compile('{{timestamp}}');
   test.ok(moment(template()).isValid(), 'Works');
@@ -38,23 +43,26 @@ tape('timestamp', function (test) {
   actual = template({ date: 'Oct 21 15' });
   test.equal(actual, expected, 'Works with custom input format');
 
+  // CI runners are UTC, so `utc=false` has to be exercised under an explicitly
+  // non-UTC zone or it proves nothing. Both zones below are chosen for having
+  // no daylight saving, which keeps the expected offsets fixed year-round.
+  // Expected values are hard-coded rather than recomputed, so that a shared
+  // misunderstanding of moment's `ZZ` format can't pass silently.
   template = Handlebars.compile('{{timestamp format="ZZ" utc=false}}');
-  expected = (function (date) {
-    var offset = today.getTimezoneOffset() / 0.6;
-    var result = '';
-    if (offset > 0) {
-      result += '-';
-      if (offset.toString().length < 4) {
-        result += '0';
-      }
-      result += offset;
-    } else if (offset === 0) {
-      result = '+0000'
-    }
-    return result;
-  })(today);
+
+  setTimezone('America/Phoenix');
   actual = template();
-  test.equal(actual, expected, 'Maintains timezone offset in non-UTC mode');
+  test.equal(actual, '-0700', 'Maintains a whole-hour timezone offset in non-UTC mode');
+
+  setTimezone('Asia/Kolkata');
+  actual = template();
+  test.equal(actual, '+0530', 'Maintains a half-hour timezone offset in non-UTC mode');
+
+  template = Handlebars.compile('{{timestamp format="ZZ"}}');
+  actual = template();
+  test.equal(actual, '+0000', 'Ignores the local timezone in the default UTC mode');
+
+  setTimezone(realTz);
 
   template = Handlebars.compile('{{timestamp date}}');
   test.throws(
@@ -65,3 +73,14 @@ tape('timestamp', function (test) {
     'Errors when passed an invalid date value'
   );
 });
+
+// Node re-reads `process.env.TZ` when the next Date is constructed, so the zone
+// can be swapped mid-run without spawning a child process.
+function setTimezone (tz) {
+  if (tz === undefined) {
+    delete process.env.TZ;
+  } else {
+    process.env.TZ = tz;
+  }
+}
+
