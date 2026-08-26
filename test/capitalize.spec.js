@@ -12,7 +12,7 @@ tape('capitalize', (test) => {
   let expected;
   let actual;
 
-  test.plan(3);
+  test.plan(4);
 
   expected = 'Hello world';
   actual = template({ content: 'hello world' });
@@ -28,5 +28,16 @@ tape('capitalize', (test) => {
     },
     /requires one argument\.$/v,
     'Errors when argument is missing'
+  );
+
+  // `{{capitalize}}` with no value at all reaches a different path: Handlebars
+  // passes only its options object, which used to be stringified and
+  // capitalized into "[object Object]".
+  test.throws(
+    () => {
+      Handlebars.compile('{{capitalize}}')();
+    },
+    /requires one argument\.$/v,
+    'Errors when called with no arguments'
   );
 });

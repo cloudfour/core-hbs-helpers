@@ -18,6 +18,13 @@ but never tagged, so their links point at the version-bump commits instead.
 
 ### Fixed
 
+- `{{capitalize}}` and `{{capitalizeWords}}` with no value rendered
+  `"[object object]"` instead of raising. Both documented an error for the
+  missing-argument case and both checked for it, but the check couldn't see it:
+  Handlebars appends its options object as a trailing argument, so with nothing
+  passed that object *was* the value — not nil, not a string, and duly
+  stringified. The named-but-undefined form, `{{capitalize missing}}`, always
+  raised correctly, which is the path the specs covered.
 - **Breaking.** `compare`'s `typeof` operator ignored its right operand
   entirely. `R.type` takes one argument, so the `R.type(R.__)` it was built from
   was not a partial application waiting on a second value — it was a function
@@ -36,6 +43,11 @@ but never tagged, so their links point at the version-bump commits instead.
 
 ### Changed
 
+- **Breaking.** `capitalize` and `capitalizeWords` are Handlebars-only. They now
+  read their value from the argument before the options object rather than the
+  first argument, so calling them directly — `helpers.capitalize('hi')` — raises
+  instead of returning `"Hi"`. Only registering them as Handlebars helpers was
+  ever documented, and `and`, `or`, and `compare` have always worked this way.
 - **Breaking.** `and`, `or`, and `compare` reject too many values, not just too
   few. Arity was previously read from `arguments.length`, which could only ever
   catch the missing case: one value too many landed in the parameter holding
