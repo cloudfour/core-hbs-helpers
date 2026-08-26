@@ -15,8 +15,9 @@
   ],
   "main": "index.js",
   "files": [
-    "lib",
-    "index.js"
+    "CHANGELOG.md",
+    "index.js",
+    "lib"
   ],
   "dependencies": {
     "capitalize": "2.0.4",
