@@ -18,8 +18,8 @@
     "lint:fix": "eslint . --fix"
   },
   "files": [
-    "CHANGELOG.md",
     "index.js",
+    "CHANGELOG.md",
     "lib"
   ],
   "keywords": [
