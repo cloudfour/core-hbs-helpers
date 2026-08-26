@@ -1,15 +1,16 @@
 'use strict';
 
-var toSlug = require('../').toSlug;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const toSlug = require('../').toSlug;
 
 Handlebars.registerHelper(toSlug.name, toSlug);
 
-tape('toSlug', function (test) {
-  var template = Handlebars.compile('{{toSlug title}}');
-  var actual;
-  var expected;
+tape('toSlug', (test) => {
+  const template = Handlebars.compile('{{toSlug title}}');
+  let actual;
+  let expected;
 
   test.plan(6);
 

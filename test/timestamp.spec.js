@@ -1,22 +1,25 @@
 'use strict';
 
-var timestamp = require('../').timestamp;
-var tape = require('tape');
-var Handlebars = require('handlebars');
-var moment = require('moment');
+const process = require('node:process');
+
+const Handlebars = require('handlebars');
+const moment = require('moment');
+const tape = require('tape');
+
+const timestamp = require('../').timestamp;
 
 Handlebars.registerHelper(timestamp.name, timestamp);
 
-tape('timestamp', function (test) {
-  var template;
-  var actual;
-  var expected;
-  var today = new Date();
-  var realTz = process.env.TZ;
+tape('timestamp', (test) => {
+  let template;
+  let actual;
+  let expected;
+  const today = new Date();
+  const realTz = process.env.TZ;
 
   test.plan(9);
 
-  test.teardown(function () {
+  test.teardown(() => {
     setTimezone(realTz);
   });
 
@@ -66,10 +69,10 @@ tape('timestamp', function (test) {
 
   template = Handlebars.compile('{{timestamp date}}');
   test.throws(
-    function () {
+    () => {
       template({ date: 'abc123' });
     },
-    /valid Date-like value\.$/,
+    /valid Date-like value\.$/v,
     'Errors when passed an invalid date value'
   );
 });

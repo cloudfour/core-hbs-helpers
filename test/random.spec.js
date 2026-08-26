@@ -1,29 +1,31 @@
 'use strict';
 
-var random = require('../').random;
-var tape = require('tape');
-var R = require('ramda');
-var Handlebars = require('handlebars');
-var Chance = require('chance');
-var chance = new Chance();
+const Chance = require('chance');
+const Handlebars = require('handlebars');
+const R = require('ramda');
+const tape = require('tape');
+
+const random = require('../').random;
+
+const chance = new Chance();
 
 Handlebars.registerHelper(random.name, random);
 
-tape('random', function (test) {
-  var template;
-  var result;
-  var parsed;
+tape('random', (test) => {
+  let template;
+  let result;
+  let parsed;
 
   test.plan(6);
 
   template = Handlebars.compile('{{random}}');
   result = template();
-  parsed = parseFloat(result);
-  test.ok(R.is(Number, parsed) && parsed === parseInt(result, 10), 'Works');
+  parsed = Number(result);
+  test.ok(Number.isSafeInteger(parsed), 'Works');
 
   template = Handlebars.compile('{{random min=5 max=10}}');
   result = template();
-  parsed = parseInt(result, 10);
+  parsed = Number(result);
   test.ok(parsed >= 5 && parsed <= 10, 'Works with hash');
 
   template = Handlebars.compile('{{random "state"}}');
@@ -32,24 +34,24 @@ tape('random', function (test) {
 
   template = Handlebars.compile('{{random "dollar" max=20}}');
   result = template();
-  parsed = parseFloat(result.substr(1));
+  parsed = Number(result.slice(1));
   test.ok(result[0] === '$' && parsed <= 20, 'Works with method and hash');
 
   template = Handlebars.compile('{{random 42}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /first argument must be a String\.$/,
+    /first argument must be a String\.$/v,
     'Errors when method is not a String'
   );
 
   template = Handlebars.compile('{{random "whatever"}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /does not support the "whatever" method\.$/,
+    /does not support the "whatever" method\.$/v,
     'Errors when method does not exist'
   );
 

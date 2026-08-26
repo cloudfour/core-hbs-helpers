@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```sh
 npm install --save-dev @cloudfour/hbs-helpers
 ```
 

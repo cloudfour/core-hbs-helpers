@@ -36,11 +36,25 @@ but never tagged, so their links point at the version-bump commits instead.
 
 ### Changed
 
+- **Breaking.** `average`, `capitalize`, `capitalizeWords`, and `toFixed` throw
+  `TypeError` instead of `Error` when handed the wrong type. `TypeError` is
+  still an `instanceof Error`, so `try`/`catch` is unaffected; only code
+  inspecting `err.name` or `err.constructor` will notice.
+- `around` iterates its collection with `for...of` rather than `for...in`.
+  Identical for the dense arrays it documents; a sparse array, or one carrying
+  extra enumerable properties, will iterate differently.
+- `package.json` now declares `engines.node` as `>=22.13.0`, matching the floor
+  the tooling requires. npm warns rather than fails unless `engine-strict` is
+  set.
 - Test coverage for `and`, `or`, `compare`, and `maybe` now exercises the
   inverse (`{{else}}`) branch of each helper, which nothing had asserted before.
   `maybe` forces both outcomes through a stubbed `Math.random` rather than
   accepting either, and `timestamp` checks its non-UTC offset against fixed
   values under an explicitly non-UTC timezone, which CI never exercised.
+- The codebase is linted with `@cloudfour/eslint-config`, enforced in CI. This
+  modernized the source throughout — `var` to `const`/`let`, arrow callbacks,
+  template literals — without intending any behavior change beyond the two
+  noted above.
 
 ## [0.11.0] - 2019-07-30
 

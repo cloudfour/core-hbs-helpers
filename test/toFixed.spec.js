@@ -1,22 +1,23 @@
 'use strict';
 
-var toFixed = require('../').toFixed;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const toFixed = require('../').toFixed;
 
 Handlebars.registerHelper(toFixed.name, toFixed);
 
-tape('toFixed', function (test) {
-  var template = Handlebars.compile('{{toFixed number}}');
-  var expected = '1.00';
-  var actual = template({ number: 1 });
+tape('toFixed', (test) => {
+  const template = Handlebars.compile('{{toFixed number}}');
+  const expected = '1.00';
+  const actual = template({ number: 1 });
   test.plan(2);
   test.equal(actual, expected, 'Works');
   test.throws(
-    function () {
+    () => {
       template({ number: 'abc123' })
     },
-    /number\-like value\.$/,
+    /number-like value\.$/v,
     'Errors when passed an unparseable value'
   );
 });

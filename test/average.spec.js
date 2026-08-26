@@ -1,15 +1,16 @@
 'use strict';
 
-var average = require('../').average;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const average = require('../').average;
 
 Handlebars.registerHelper(average.name, average);
 
-tape('average', function (test) {
-  var template;
-  var expected;
-  var actual;
+tape('average', (test) => {
+  let template;
+  let expected;
+  let actual;
 
   test.plan(2);
 

@@ -1,15 +1,15 @@
 'use strict';
 
-var replaceAll = require('../').replaceAll;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const replaceAll = require('../').replaceAll;
 
 Handlebars.registerHelper(replaceAll.name, replaceAll);
 
-tape('replaceAll', function (test) {
-  var template;
-  var actual;
-  var expected;
+tape('replaceAll', (test) => {
+  let actual;
+  let expected;
 
   test.plan(5);
 

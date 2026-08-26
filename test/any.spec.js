@@ -1,15 +1,16 @@
 'use strict';
 
-var any = require('../').any;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const any = require('../').any;
 
 Handlebars.registerHelper(any.name, any);
 
-tape('any', function (test) {
-  var expected = '✔︎';
-  var template;
-  var actual;
+tape('any', (test) => {
+  const expected = '✔︎';
+  let template;
+  let actual;
 
   test.plan(7);
 

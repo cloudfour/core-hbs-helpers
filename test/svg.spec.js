@@ -1,17 +1,19 @@
 'use strict';
 
-var svg = require('../').svg;
-var tape = require('tape');
-var Handlebars = require('handlebars');
-var relativeSvg = svg.create({ basePath: './test/fixtures/svg' });
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const svg = require('../').svg;
+
+const relativeSvg = svg.create({ basePath: './test/fixtures/svg' });
 
 Handlebars.registerHelper(svg.name, svg);
 Handlebars.registerHelper('relativeSvg', relativeSvg);
 
-tape('svg', function (test) {
-  var template;
-  var actual;
-  var expected = '<svg viewBox="0 0 1 1"><g/></svg>';
+tape('svg', (test) => {
+  let template;
+  let actual;
+  let expected = '<svg viewBox="0 0 1 1"><g/></svg>';
 
   test.plan(8);
 
@@ -39,28 +41,28 @@ tape('svg', function (test) {
 
   template = Handlebars.compile('{{svg}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /requires a file path\.$/,
+    /requires a file path\.$/v,
     'Errors when file path is omitted'
   );
 
   template = Handlebars.compile('{{svg "blah.svg"}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /no such file or directory/,
+    /no such file or directory/v,
     'Errors when file does not exist'
   );
 
   template = Handlebars.compile('{{svg "test/fixtures/svg/test.html"}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /only supports SVG files\.$/,
+    /only supports SVG files\.$/v,
     'Errors when path is not an SVG'
   );
 });

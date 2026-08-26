@@ -1,15 +1,16 @@
 'use strict';
 
-var or = require('../').or;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const or = require('../').or;
 
 Handlebars.registerHelper(or.name, or);
 
-tape('or', function (test) {
-  var expected = '✔︎';
-  var template;
-  var actual;
+tape('or', (test) => {
+  const expected = '✔︎';
+  let template;
+  let actual;
 
   test.plan(6);
 
@@ -33,10 +34,10 @@ tape('or', function (test) {
 
   template = Handlebars.compile('{{#or a}}✔︎{{/or}}');
   test.throws(
-    function () {
+    () => {
       template({ a: false })
     },
-    /needs two arguments\.$/,
+    /needs two arguments\.$/v,
     'Errors with missing arguments.'
   );
 });

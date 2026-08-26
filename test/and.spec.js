@@ -1,15 +1,16 @@
 'use strict';
 
-var and = require('../').and;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const and = require('../').and;
 
 Handlebars.registerHelper(and.name, and);
 
-tape('and', function (test) {
-  var expected = '✔︎';
-  var template;
-  var actual;
+tape('and', (test) => {
+  const expected = '✔︎';
+  let template;
+  let actual;
 
   test.plan(6);
 
@@ -33,10 +34,10 @@ tape('and', function (test) {
 
   template = Handlebars.compile('{{#and a}}✔︎{{/and}}');
   test.throws(
-    function () {
+    () => {
       template({ a: true })
     },
-    /needs two arguments\.$/,
+    /needs two arguments\.$/v,
     'Errors with missing arguments.'
   );
 });

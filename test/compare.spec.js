@@ -1,16 +1,17 @@
 'use strict';
 
-var compare = require('../').compare;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const compare = require('../').compare;
 
 Handlebars.registerHelper(compare.name, compare);
 
-tape('compare', function (test) {
-  var match = '✔︎';
-  var noMatch = '✘';
-  var block;
-  var inline;
+tape('compare', (test) => {
+  const match = '✔︎';
+  const noMatch = '✘';
+  let block;
+  let inline;
 
   test.plan(42);
 
@@ -94,23 +95,23 @@ tape('compare', function (test) {
 
   block = Handlebars.compile('{{#compare a "foo" b}}✔︎{{/compare}}');
   test.throws(
-    function () {
+    () => {
       template(block, 1, 2);
     },
-    /needs a valid operator\.$/,
+    /needs a valid operator\.$/v,
     'Errors with an invalid operator.'
   );
 
   block = Handlebars.compile('{{#compare a}}✔︎{{/compare}}');
   test.throws(
-    function () {
+    () => {
       block({ a: 1 });
     },
-    /needs two arguments\.$/,
+    /needs two arguments\.$/v,
     'Errors with missing arguments.'
   );
 });
 
 function template (compiled, a, b) {
-  return compiled({ a: a, b: b });
+  return compiled({ a, b });
 }

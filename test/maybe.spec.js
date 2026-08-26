@@ -1,23 +1,24 @@
 'use strict';
 
-var maybe = require('../').maybe;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const maybe = require('../').maybe;
 
 Handlebars.registerHelper(maybe.name, maybe);
 
-tape('maybe', function (test) {
-  var template = Handlebars.compile(
+tape('maybe', (test) => {
+  const template = Handlebars.compile(
     '{{#maybe}}pass{{else}}fail{{/maybe}}'
   );
-  var realRandom = Math.random;
+  const realRandom = Math.random;
 
   test.plan(2);
 
   // `maybe` is genuinely random, so each branch has to be forced to be checked
   // at all. It rounds `Math.random()`, which makes 0.5 the lowest value that
   // selects the primary block.
-  test.teardown(function () {
+  test.teardown(() => {
     Math.random = realRandom;
   });
 

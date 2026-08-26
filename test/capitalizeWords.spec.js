@@ -1,15 +1,16 @@
 'use strict';
 
-var capitalizeWords = require('../').capitalizeWords;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const capitalizeWords = require('../').capitalizeWords;
 
 Handlebars.registerHelper(capitalizeWords.name, capitalizeWords);
 
-tape('capitalizeWords', function (test) {
-  var template = Handlebars.compile('{{{capitalizeWords content}}}');
-  var expected;
-  var actual;
+tape('capitalizeWords', (test) => {
+  const template = Handlebars.compile('{{{capitalizeWords content}}}');
+  let expected;
+  let actual;
 
   test.plan(3);
 
@@ -22,10 +23,10 @@ tape('capitalizeWords', function (test) {
   test.equal(actual, expected, 'Works with non-String arguments');
 
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /requires one argument\.$/,
+    /requires one argument\.$/v,
     'Errors when argument is missing'
   );
 });
