@@ -1,15 +1,15 @@
 'use strict';
 
-var split = require('../').split;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const split = require('../').split;
 
 Handlebars.registerHelper(split.name, split);
 
-tape('split', function (test) {
-  var template;
-  var actual;
-  var expected;
+tape('split', (test) => {
+  let actual;
+  let expected;
 
   test.plan(5);
 

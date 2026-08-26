@@ -1,15 +1,16 @@
 'use strict';
 
-var toFraction = require('../').toFraction;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const toFraction = require('../').toFraction;
 
 Handlebars.registerHelper(toFraction.name, toFraction);
 
-tape('toFraction', function (test) {
-  var template = Handlebars.compile('{{{toFraction number}}}');
-  var expected;
-  var actual;
+tape('toFraction', (test) => {
+  const template = Handlebars.compile('{{{toFraction number}}}');
+  let expected;
+  let actual;
 
   test.plan(3);
 

@@ -1,14 +1,15 @@
 'use strict';
 
-var concat = require('../').concat;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const concat = require('../').concat;
 
 Handlebars.registerHelper(concat.name, concat);
 
-tape('concat', function (test) {
-  var template;
-  var result;
+tape('concat', (test) => {
+  let template;
+  let result;
 
   test.plan(4);
 
@@ -26,10 +27,10 @@ tape('concat', function (test) {
 
   template = Handlebars.compile('{{concat}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /at least one argument\.$/,
+    /at least one argument\.$/v,
     'Errors when passed zero arguments'
   );
 });

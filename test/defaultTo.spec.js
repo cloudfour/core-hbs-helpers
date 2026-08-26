@@ -1,15 +1,16 @@
 'use strict';
 
-var defaultTo = require('../').defaultTo;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const defaultTo = require('../').defaultTo;
 
 Handlebars.registerHelper(defaultTo.name, defaultTo);
 
-tape('defaultTo', function (test) {
-  var template;
-  var expected;
-  var actual;
+tape('defaultTo', (test) => {
+  let template;
+  let expected;
+  let actual;
 
   test.plan(4);
 

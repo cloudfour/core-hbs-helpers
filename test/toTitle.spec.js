@@ -1,15 +1,16 @@
 'use strict';
 
-var toTitle = require('../').toTitle;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const toTitle = require('../').toTitle;
 
 Handlebars.registerHelper(toTitle.name, toTitle);
 
-tape('toTitle', function (test) {
-  var template = Handlebars.compile('{{toTitle title}}');
-  var expected = 'title';
-  var actual = template({
+tape('toTitle', (test) => {
+  const template = Handlebars.compile('{{toTitle title}}');
+  const expected = 'title';
+  const actual = template({
     title: '01 title'
   });
   test.plan(1);

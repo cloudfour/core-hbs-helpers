@@ -1,15 +1,16 @@
 'use strict';
 
-var math = require('../').math;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const math = require('../').math;
 
 Handlebars.registerHelper(math.name, math);
 
-tape('math', function (test) {
-  var template;
-  var actual;
-  var expected;
+tape('math', (test) => {
+  let template;
+  let actual;
+  let expected;
 
   test.plan(11);
 
@@ -60,19 +61,19 @@ tape('math', function (test) {
 
   template = Handlebars.compile('{{math 1 "foo" 2}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /needs a valid operator\.$/,
+    /needs a valid operator\.$/v,
     'Errors with an invalid operator'
   );
 
   template = Handlebars.compile('{{math}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /needs at least two arguments\.$/,
+    /needs at least two arguments\.$/v,
     'Errors with too few arguments'
   );
 });

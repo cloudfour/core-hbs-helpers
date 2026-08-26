@@ -1,15 +1,16 @@
 'use strict';
 
-var toJSON = require('../').toJSON;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const toJSON = require('../').toJSON;
 
 Handlebars.registerHelper(toJSON.name, toJSON);
 
-tape('toJSON', function (test) {
-  var template = Handlebars.compile('{{#each (toJSON data)}}{{this}}{{/each}}');
-  var actual;
-  var expected;
+tape('toJSON', (test) => {
+  let template = Handlebars.compile('{{#each (toJSON data)}}{{this}}{{/each}}');
+  let actual;
+  let expected;
 
   test.plan(5);
 
@@ -26,17 +27,17 @@ tape('toJSON', function (test) {
   actual = template();
   test.equal(actual, expected, 'Handles array literals');
 
-  template = Handlebars.compile('{{#each (toJSON \'{\"foo\": \"bar\"}\')}}{{this}}{{/each}}');
+  template = Handlebars.compile('{{#each (toJSON \'{"foo": "bar"}\')}}{{this}}{{/each}}');
   expected = 'bar';
   actual = template();
   test.equal(actual, expected, 'Handles object literals');
 
   template = Handlebars.compile('{{toJSON data}}');
   test.throws(
-    function () {
+    () => {
       template({ data: 'not JSON' });
     },
-    /must be passed a valid JSON string\.$/,
+    /must be passed a valid JSON string\.$/v,
     'Errors when passed invalid JSON'
   );
 });

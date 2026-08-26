@@ -1,25 +1,26 @@
 'use strict';
 
-var randomItem = require('../').randomItem;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const randomItem = require('../').randomItem;
 
 Handlebars.registerHelper(randomItem.name, randomItem);
 
-tape('randomItem', function (test) {
-  var items = ['a', 'b', 'c'];
-  var template;
-  var result;
+tape('randomItem', (test) => {
+  const items = ['a', 'b', 'c'];
+  let template;
+  let result;
 
   test.plan(4);
 
   template = Handlebars.compile('{{randomItem items}}');
-  result = template({ items: items });
-  test.ok(items.indexOf(result) !== -1, 'Works with a single Array');
+  result = template({ items });
+  test.ok(items.includes(result), 'Works with a single Array');
 
-  template = Handlebars.compile('{{randomItem "' + items.join('" "') + '"}}');
+  template = Handlebars.compile(`{{randomItem "${items.join('" "')}"}}`);
   result = template();
-  test.ok(items.indexOf(result) !== -1, 'Works with multiple arguments');
+  test.ok(items.includes(result), 'Works with multiple arguments');
 
   template = Handlebars.compile('{{randomItem "a"}}');
   result = template();
@@ -27,10 +28,10 @@ tape('randomItem', function (test) {
 
   template = Handlebars.compile('{{randomItem}}');
   test.throws(
-    function () {
+    () => {
       template();
     },
-    /at least one argument\.$/,
+    /at least one argument\.$/v,
     'Errors when passed zero arguments'
   );
 });

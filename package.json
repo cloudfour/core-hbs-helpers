@@ -2,22 +2,31 @@
   "name": "@cloudfour/hbs-helpers",
   "version": "0.11.0",
   "description": "Handlebars helpers used for various Cloud Four projects.",
-  "author": "Cloud Four (http://cloudfour.com)",
   "license": "MIT",
-  "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "repository": "cloudfour/core-hbs-helpers",
+  "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "bugs": "https://github.com/cloudfour/core-hbs-helpers/issues",
+  "author": "Cloud Four (http://cloudfour.com)",
+  "main": "./index.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "test": "tape test/*.spec.js | tap-spec",
+    "preversion": "npm test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "index.js",
+    "lib"
+  ],
   "keywords": [
     "handlebars",
     "helpers",
     "mustache",
     "template"
-  ],
-  "main": "index.js",
-  "files": [
-    "CHANGELOG.md",
-    "index.js",
-    "lib"
   ],
   "dependencies": {
     "capitalize": "2.0.4",
@@ -31,11 +40,9 @@
     "tinycolor2": "1.6.0"
   },
   "devDependencies": {
+    "@cloudfour/eslint-config": "26.0.0",
+    "eslint": "10.9.1",
     "tap-spec": "5.0.0",
     "tape": "5.10.2"
-  },
-  "scripts": {
-    "test": "tape test/*.spec.js | tap-spec",
-    "preversion": "npm test"
   }
 }

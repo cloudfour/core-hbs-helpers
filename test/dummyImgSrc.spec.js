@@ -1,15 +1,16 @@
 'use strict';
 
-var dummyImgSrc = require('../').dummyImgSrc;
-var tape = require('tape');
-var Handlebars = require('handlebars');
+const Handlebars = require('handlebars');
+const tape = require('tape');
+
+const dummyImgSrc = require('../').dummyImgSrc;
 
 Handlebars.registerHelper(dummyImgSrc.name, dummyImgSrc);
 
-tape('dummyImgSrc', function (test) {
-  var template;
-  var expected;
-  var actual;
+tape('dummyImgSrc', (test) => {
+  let template;
+  let expected;
+  let actual;
 
   test.plan(5);
 
@@ -26,21 +27,21 @@ tape('dummyImgSrc', function (test) {
   template = Handlebars.compile('{{dummyImgSrc}}');
   test.throws(
     template,
-    /two numeric dimensions\.$/,
+    /two numeric dimensions\.$/v,
     'Errors when passed no dimensions'
   );
 
   template = Handlebars.compile('{{dummyImgSrc 48}}');
   test.throws(
     template,
-    /two numeric dimensions\.$/,
+    /two numeric dimensions\.$/v,
     'Errors when passed only one dimension'
   );
 
   template = Handlebars.compile('{{dummyImgSrc "foo" "bar"}}');
   test.throws(
     template,
-    /two numeric dimensions\.$/,
+    /two numeric dimensions\.$/v,
     'Errors when passed non-numeric dimensions'
   );
 });
