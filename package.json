@@ -9,7 +9,7 @@
   "author": "Cloud Four (http://cloudfour.com)",
   "main": "./index.js",
   "engines": {
-    "node": ">=22.13.0"
+    "node": "v26.8.0"
   },
   "scripts": {
     "test": "tape test/*.spec.js | tap-spec",
