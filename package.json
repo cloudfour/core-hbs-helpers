@@ -14,8 +14,8 @@
   "scripts": {
     "test": "tape test/*.spec.js | tap-spec",
     "preversion": "npm test",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "lint:check": "eslint ."
   },
   "files": [
     "index.js",
