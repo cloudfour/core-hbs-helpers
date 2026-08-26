@@ -1,5 +1,8 @@
 'use strict';
 
+const fs = require('node:fs');
+const path = require('node:path');
+
 const tape = require('tape');
 
 const helpers = require('../');
@@ -43,7 +46,7 @@ const EXPECTED_HELPERS = [
 ];
 
 tape('exports', (test) => {
-  test.plan(4);
+  test.plan(5);
 
   test.deepEqual(
     Object.keys(helpers).toSorted(),
@@ -74,5 +77,15 @@ tape('exports', (test) => {
     typeof helpers.svg.create,
     'function',
     'The svg helper exposes create(), as its docblock documents'
+  );
+
+  // The README is the documentation now, so a helper with no section there is
+  // undocumented. Cheaper than running a generator in CI, and it fails in
+  // review rather than after a release.
+  const readme = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8');
+  test.deepEqual(
+    EXPECTED_HELPERS.filter((name) => !readme.includes(`### \`${name}\``)),
+    [],
+    'Every helper has a section in the README'
   );
 });

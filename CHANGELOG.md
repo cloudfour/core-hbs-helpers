@@ -43,6 +43,12 @@ but never tagged, so their links point at the version-bump commits instead.
 
 ### Changed
 
+- Documentation for every helper now lives in the README, generated from the
+  docblocks. The [doxdox](https://doxdox.org) badge and link are gone: the
+  hosted service has been returning HTTP 500 for every repository it serves,
+  including its own examples, so our published docs were unreachable while the
+  badge still rendered green. A CI badge replaces it.
+
 - **Breaking.** `capitalize` and `capitalizeWords` are Handlebars-only. They now
   read their value from the argument before the options object rather than the
   first argument, so calling them directly — `helpers.capitalize('hi')` — raises
