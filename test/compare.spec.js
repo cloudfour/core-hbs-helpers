@@ -13,7 +13,7 @@ tape('compare', (test) => {
   let block;
   let inline;
 
-  test.plan(43);
+  test.plan(50);
 
   // Each operator is checked in both directions. A block helper that only ever
   // gets its truthy case asserted will happily pass with `options.inverse`
@@ -92,6 +92,20 @@ tape('compare', (test) => {
   test.equal(template(block, 'x', 'y'), noMatch, 'Block defaults to === and resolves to false');
   test.equal(template(inline, 'x', 'x'), match, 'Inline defaults to === and resolves to true');
   test.equal(template(inline, 'x', 'y'), noMatch, 'Inline defaults to === and resolves to false');
+
+  // The equality operators are named after JavaScript's but do not behave like
+  // them, in both directions. Pinned here so the docblock cannot drift from the
+  // code -- see issue #198.
+  block = Handlebars.compile('{{#compare a "==" b}}✔︎{{else}}✘{{/compare}}');
+  test.equal(template(block, 1, '1'), noMatch, '== does not coerce, unlike JavaScript');
+  test.equal(template(block, 0, false), noMatch, '== does not coerce 0 to false');
+  test.equal(template(block, null, undefined), noMatch, '== does not equate null and undefined');
+  test.equal(template(block, [1, 2], [1, 2]), match, '== compares arrays structurally');
+  test.equal(template(block, { x: 1 }, { x: 1 }), match, '== compares objects structurally');
+
+  block = Handlebars.compile('{{#compare a "===" b}}✔︎{{else}}✘{{/compare}}');
+  test.equal(template(block, [1, 2], [1, 2]), noMatch, '=== compares identity, not structure');
+  test.equal(template(block, NaN, NaN), match, '=== treats NaN as equal to itself, unlike JavaScript');
 
   block = Handlebars.compile('{{#compare a "foo" b}}✔︎{{/compare}}');
   test.throws(
