@@ -10,9 +10,24 @@ tape('maybe', function (test) {
   var template = Handlebars.compile(
     '{{#maybe}}pass{{else}}fail{{/maybe}}'
   );
-  var result = template();
-  var isMatch = result.search(/(pass|fail)/) !== -1;
+  var realRandom = Math.random;
 
-  test.plan(1);
-  test.ok(isMatch, 'works');
+  test.plan(2);
+
+  // `maybe` is genuinely random, so each branch has to be forced to be checked
+  // at all. It rounds `Math.random()`, which makes 0.5 the lowest value that
+  // selects the primary block.
+  test.teardown(function () {
+    Math.random = realRandom;
+  });
+
+  Math.random = function () {
+    return 0.5;
+  };
+  test.equal(template(), 'pass', 'Outputs the block');
+
+  Math.random = function () {
+    return 0.49;
+  };
+  test.equal(template(), 'fail', 'Outputs the inverse block');
 });
