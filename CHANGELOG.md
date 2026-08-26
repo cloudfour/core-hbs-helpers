@@ -3,9 +3,8 @@
 All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-Note that while the version stays below `1.0.0`, the **minor** number carries
-breaking changes — `^0.11.0` will not pick up `0.12.0`.
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Note that while the version stays below `1.0.0`, the **minor** number
+carries breaking changes — `^0.11.0` will not pick up `0.12.0`.
 
 Everything below `Unreleased` was reconstructed after the fact from git history,
 release tags, and the `@since` annotations in `lib/`. Those entries record which
@@ -14,7 +13,7 @@ releases before `0.6.1` predate this package's move to the `@cloudfour` scope, s
 they are not on npm under its current name. `0.9.0` and `0.10.0` were published
 but never tagged, so their links point at the version-bump commits instead.
 
-## [Unreleased]
+## [0.12.0] - 2026-08-26
 
 ### Fixed
 
@@ -22,7 +21,7 @@ but never tagged, so their links point at the version-bump commits instead.
   `"[object object]"` instead of raising. Both documented an error for the
   missing-argument case and both checked for it, but the check couldn't see it:
   Handlebars appends its options object as a trailing argument, so with nothing
-  passed that object *was* the value — not nil, not a string, and duly
+  passed that object _was_ the value — not nil, not a string, and duly
   stringified. The named-but-undefined form, `{{capitalize missing}}`, always
   raised correctly, which is the path the specs covered.
 - **Breaking.** `compare`'s `typeof` operator ignored its right operand
@@ -59,7 +58,7 @@ but never tagged, so their links point at the version-bump commits instead.
   catch the missing case: one value too many landed in the parameter holding
   Handlebars' options object, and the helper carried on with the wrong thing in
   hand. `{{#and a b c}}` and `{{#or a b c}}` failed with `TypeError: options.fn
-  is not a function`, and `{{#compare a "==" b c}}` rendered the string `true`
+is not a function`, and `{{#compare a "==" b c}}` rendered the string `true`
   into the template. All three now raise the helper's own error.
 - **Breaking.** `average`, `capitalize`, `capitalizeWords`, and `toFixed` throw
   `TypeError` instead of `Error` when handed the wrong type. `TypeError` is
@@ -189,19 +188,3 @@ Initial release.
 - `and`, `around`, `average`, `compare`, `defaultTo`, `maybe`, `or`,
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
-
-[unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...HEAD
-[0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
-[0.10.0]: https://github.com/cloudfour/core-hbs-helpers/compare/690688a...5d1f7e7
-[0.9.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.8.0...690688a
-[0.8.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.7.0...0.8.0
-[0.7.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.6.1...0.7.0
-[0.6.1]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.6.0...0.6.1
-[0.6.0]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.5.0...v0.6.0
-[0.5.0]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.3.1...v0.4.0
-[0.3.1]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.1.1...v0.2.0
-[0.1.1]: https://github.com/cloudfour/core-hbs-helpers/compare/v0.1...v0.1.1
-[0.1]: https://github.com/cloudfour/core-hbs-helpers/releases/tag/v0.1
