@@ -59,6 +59,12 @@ but never tagged, so their links point at the version-bump commits instead.
   `TypeError` instead of `Error` when handed the wrong type. `TypeError` is
   still an `instanceof Error`, so `try`/`catch` is unaffected; only code
   inspecting `err.name` or `err.constructor` will notice.
+- `compare`'s docblock now documents that its equality operators are not
+  JavaScript's. `==` and `!=` are deep structural equality — no coercion, so
+  `1 == "1"` is false, and objects compare by contents, so two separate arrays
+  holding the same values are equal. `===` and `!==` are identity, matching
+  JavaScript except that `NaN` equals itself. Behavior is unchanged; specs were
+  added so the documentation can't drift from the code.
 - `around` iterates its collection with `for...of` rather than `for...in`.
   Identical for the dense arrays it documents; a sparse array, or one carrying
   extra enumerable properties, will iterate differently.
