@@ -1,4 +1,12 @@
 {
   "extends": ["config:recommended", ":automergeMinor", ":pinVersions"],
-  "minimumReleaseAge": "3 days"
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "engines.node states what consumers need, not what we develop on. Pinning or auto-bumping it silently drops support for everyone else. .nvmrc and the CI node-version are handled by other managers and still update.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines"],
+      "enabled": false
+    }
+  ]
 }
