@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const or = require('../').or;
 
-Handlebars.registerHelper(or.name, or);
+Handlebars.registerHelper('or', or);
 
 tape('or', (test) => {
   const expected = '✔︎';

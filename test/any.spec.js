@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const any = require('../').any;
 
-Handlebars.registerHelper(any.name, any);
+Handlebars.registerHelper('any', any);
 
 tape('any', (test) => {
   const expected = '✔︎';

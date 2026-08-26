@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const around = require('../').around;
 
-Handlebars.registerHelper(around.name, around);
+Handlebars.registerHelper('around', around);
 
 tape('around', (test) => {
   let template;

@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const toSlug = require('../').toSlug;
 
-Handlebars.registerHelper(toSlug.name, toSlug);
+Handlebars.registerHelper('toSlug', toSlug);
 
 tape('toSlug', (test) => {
   const template = Handlebars.compile('{{toSlug title}}');

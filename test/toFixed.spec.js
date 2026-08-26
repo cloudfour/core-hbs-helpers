@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const toFixed = require('../').toFixed;
 
-Handlebars.registerHelper(toFixed.name, toFixed);
+Handlebars.registerHelper('toFixed', toFixed);
 
 tape('toFixed', (test) => {
   const template = Handlebars.compile('{{toFixed number}}');

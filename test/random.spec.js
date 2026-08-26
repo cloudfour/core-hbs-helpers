@@ -9,7 +9,7 @@ const random = require('../').random;
 
 const chance = new Chance();
 
-Handlebars.registerHelper(random.name, random);
+Handlebars.registerHelper('random', random);
 
 tape('random', (test) => {
   let template;

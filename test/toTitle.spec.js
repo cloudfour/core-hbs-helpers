@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const toTitle = require('../').toTitle;
 
-Handlebars.registerHelper(toTitle.name, toTitle);
+Handlebars.registerHelper('toTitle', toTitle);
 
 tape('toTitle', (test) => {
   const template = Handlebars.compile('{{toTitle title}}');

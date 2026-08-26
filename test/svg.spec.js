@@ -7,7 +7,7 @@ const svg = require('../').svg;
 
 const relativeSvg = svg.create({ basePath: './test/fixtures/svg' });
 
-Handlebars.registerHelper(svg.name, svg);
+Handlebars.registerHelper('svg', svg);
 Handlebars.registerHelper('relativeSvg', relativeSvg);
 
 tape('svg', (test) => {

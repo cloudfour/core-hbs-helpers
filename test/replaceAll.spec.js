@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const replaceAll = require('../').replaceAll;
 
-Handlebars.registerHelper(replaceAll.name, replaceAll);
+Handlebars.registerHelper('replaceAll', replaceAll);
 
 tape('replaceAll', (test) => {
   let actual;

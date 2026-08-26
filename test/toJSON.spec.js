@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const toJSON = require('../').toJSON;
 
-Handlebars.registerHelper(toJSON.name, toJSON);
+Handlebars.registerHelper('toJSON', toJSON);
 
 tape('toJSON', (test) => {
   let template = Handlebars.compile('{{#each (toJSON data)}}{{this}}{{/each}}');

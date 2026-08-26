@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const dummyImgSrc = require('../').dummyImgSrc;
 
-Handlebars.registerHelper(dummyImgSrc.name, dummyImgSrc);
+Handlebars.registerHelper('dummyImgSrc', dummyImgSrc);
 
 tape('dummyImgSrc', (test) => {
   let template;

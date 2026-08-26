@@ -8,7 +8,7 @@ const tape = require('tape');
 
 const timestamp = require('../').timestamp;
 
-Handlebars.registerHelper(timestamp.name, timestamp);
+Handlebars.registerHelper('timestamp', timestamp);
 
 tape('timestamp', (test) => {
   let template;

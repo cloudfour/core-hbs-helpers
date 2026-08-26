@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const maybe = require('../').maybe;
 
-Handlebars.registerHelper(maybe.name, maybe);
+Handlebars.registerHelper('maybe', maybe);
 
 tape('maybe', (test) => {
   const template = Handlebars.compile(

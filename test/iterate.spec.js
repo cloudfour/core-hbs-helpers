@@ -5,7 +5,7 @@ const tape = require('tape');
 
 const iterate = require('../').iterate;
 
-Handlebars.registerHelper(iterate.name, iterate);
+Handlebars.registerHelper('iterate', iterate);
 
 tape('iterate', (test) => {
   const template = Handlebars.compile(
