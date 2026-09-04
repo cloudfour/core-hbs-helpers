@@ -40,7 +40,7 @@
     "tinycolor2": "1.6.0"
   },
   "devDependencies": {
-    "@cloudfour/eslint-config": "26.0.0",
+    "@cloudfour/eslint-config": "26.1.0",
     "eslint": "10.9.1",
     "tap-spec": "5.0.0",
     "tape": "5.10.2"
