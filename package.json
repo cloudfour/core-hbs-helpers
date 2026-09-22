@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@cloudfour/eslint-config": "26.1.0",
-    "eslint": "10.10.0",
+    "eslint": "10.11.0",
     "tap-spec": "5.0.0",
     "tape": "5.10.2"
   }
