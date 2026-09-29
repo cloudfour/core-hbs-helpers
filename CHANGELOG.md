@@ -13,6 +13,13 @@ releases before `0.6.1` predate this package's move to the `@cloudfour` scope, s
 they are not on npm under its current name. `0.9.0` and `0.10.0` were published
 but never tagged, so their links point at the version-bump commits instead.
 
+## [Unreleased]
+
+### Changed
+
+- The `svg` helper's documentation now says that it inlines files unmodified,
+  so it should only be used with trusted SVGs and never with user uploads.
+
 ## [0.12.0] - 2026-08-26
 
 ### Fixed
@@ -189,6 +196,7 @@ Initial release.
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
 
+[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...HEAD
 [0.12.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
 [0.10.0]: https://github.com/cloudfour/core-hbs-helpers/compare/690688a...5d1f7e7

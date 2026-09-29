@@ -444,6 +444,11 @@ Returns an array that can be iterated over.
 Returns the contents of the SVG at the specified path, with any attributes
 passed along via the hash included on the root element.
 
+The file is inlined as-is and marked safe, so Handlebars will not escape it.
+Any scripts, event handlers, or `javascript:` links it contains will run in
+the rendered page. Only point this helper at SVGs you trust, such as your
+project's own assets, never files that users upload.
+
 Inspired by https://github.com/aredridel/npm-handlebars-helper-svg
 
 ```hbs
