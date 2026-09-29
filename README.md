@@ -41,6 +41,11 @@ Examples below use `//=>` to show what a helper renders.
 
 ## Helpers
 
+The documentation below was generated once from the docblocks in `lib/`
+([#207](https://github.com/cloudfour/core-hbs-helpers/pull/207)).
+There is no build step that regenerates it, so when you change a helper's
+docblock, update its section here to match.
+
 - [`all`](#all) — Output a block (or its inverse) based on whether or not all of the supplied arguments are truthy
 - [`and`](#and) — Output a block (or its inverse) based on whether or not both of the supplied arguments are truthy
 - [`any`](#any) — Output a block (or its inverse) based on whether or not any of the supplied arguments are truthy
