@@ -393,6 +393,37 @@ Generate a random integer or any other type of random content supported by
 - **Returns:** `any`
 - **Since:** v0.4.0
 
+#### Repeatable output
+
+`random` renders something different every time, so a static site that uses
+it never builds the same way twice. `random.create({ seed })` returns a copy
+of the helper whose output repeats from one build to the next:
+
+```js
+const random = require('@cloudfour/hbs-helpers/lib/random.js');
+const randomItem = require('@cloudfour/hbs-helpers/lib/randomItem.js');
+
+// One fixed seed for every render
+Handlebars.registerHelper('random', random.create({ seed: 'my-site' }));
+
+// Or a seed per page, e.g. in Eleventy
+const perPage = { seed: (options) => options.data.root.page.inputPath };
+Handlebars.registerHelper('random', random.create(perPage));
+Handlebars.registerHelper('randomItem', randomItem.create(perPage));
+```
+
+- **`seed`** is any value [Chance.js accepts as a seed](https://chancejs.com/usage/seed.html),
+  or a function that receives the helper's Handlebars `options` and returns
+  one. Prefer a seed per page: with one fixed seed, every page draws from a
+  single sequence, so adding a `{{random}}` to one template changes the output
+  of every template rendered after it.
+- Each seed value gets one Chance instance, shared with `randomItem` helpers
+  given the same seed. Calls within a page still differ from one another.
+- Seeded sequences keep advancing for as long as the process runs. If your
+  watch mode rebuilds without restarting, call `reset()` on the helper before
+  each build. It resets every seed, including those `randomItem` uses.
+- **Since:** v0.13.0
+
 ### `randomItem`
 
 Return only one random item. If only one argument is provided and it is an
@@ -409,6 +440,11 @@ var beatles = ["John", "Paul", "George", "Ringo"];
 - **Parameters:** `items` `...*`
 - **Returns:** `any` — One random item.
 - **Since:** v0.0.1
+
+`randomItem.create({ seed })` returns a copy of the helper whose output
+repeats from one build to the next. It takes the same settings as
+[`random.create()`](#repeatable-output), and draws from the same sequence as
+a `random` helper given the same seed.
 
 ### `replaceAll`
 

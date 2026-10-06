@@ -13,6 +13,16 @@ releases before `0.6.1` predate this package's move to the `@cloudfour` scope, s
 they are not on npm under its current name. `0.9.0` and `0.10.0` were published
 but never tagged, so their links point at the version-bump commits instead.
 
+## [Unreleased]
+
+### Added
+
+- `random.create({ seed })` and `randomItem.create({ seed })`, returning
+  helpers whose output repeats from one build to the next. The seed can be a
+  function of the helper's `options`, so a static-site generator can seed
+  each page separately. The default helpers are unchanged
+  ([#225](https://github.com/cloudfour/core-hbs-helpers/issues/225)).
+
 ## [0.12.0] - 2026-08-26
 
 ### Fixed
@@ -189,6 +199,7 @@ Initial release.
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
 
+[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...HEAD
 [0.12.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
 [0.10.0]: https://github.com/cloudfour/core-hbs-helpers/compare/690688a...5d1f7e7
