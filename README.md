@@ -508,6 +508,31 @@ Inspired by https://github.com/aredridel/npm-handlebars-helper-svg
 - **Returns:** `string`
 - **Since:** v0.6.0
 
+#### Project settings
+
+By default, paths are resolved from the current working directory.
+`svg.create(settings)` returns a copy of the helper with project-wide settings
+applied, so templates don't have to repeat the path to your icons:
+
+```js
+const svg = require('@cloudfour/hbs-helpers/lib/svg.js');
+
+Handlebars.registerHelper('svg', svg.create({ basePath: './src/assets/images' }));
+```
+
+```hbs
+{{svg "icons/close"}}
+```
+
+- **`basePath`** — The directory that paths are resolved from. Defaults to
+  `process.cwd()`.
+- **`extName`** — The extension added when a path has none. Defaults to `.svg`.
+- **`omitAttr`** — Attributes removed from the SVG's root element. Defaults to
+  `['xmlns', 'xmlns:xlink']`, which aren't needed when the SVG is inline in
+  HTML. Passing your own array replaces the default, so include those two if
+  you still want them removed.
+- **Since:** v0.6.0
+
 ### `timestamp`
 
 Format a date or time using [Moment.js](https://momentjs.com/).
