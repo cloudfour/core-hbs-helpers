@@ -48,7 +48,7 @@ const EXPECTED_HELPERS = [
 ];
 
 tape('exports', (test) => {
-  test.plan(7);
+  test.plan(9);
 
   test.deepEqual(
     Object.keys(helpers).toSorted(),
@@ -62,17 +62,31 @@ tape('exports', (test) => {
     'Every helper is a function'
   );
 
-  // The deep path is API too, because that is what consumers import.
+  // The deep path is API too, because that is what consumers import. These
+  // requires go through the package's own name, so they resolve via the
+  // `exports` field in package.json exactly as they would for a consumer.
+  test.equal(
+    require('@cloudfour/hbs-helpers'),
+    helpers,
+    'The package root resolves to the helpers'
+  );
+
   test.deepEqual(
     EXPECTED_HELPERS.filter((name) => {
       try {
-        return require(`../lib/${name}.js`) !== helpers[name];
+        return require(`@cloudfour/hbs-helpers/lib/${name}.js`) !== helpers[name];
       } catch {
         return true;
       }
     }),
     [],
     'Every helper resolves at lib/<name>.js and is the same reference'
+  );
+
+  test.throws(
+    () => require('@cloudfour/hbs-helpers/lib/internal/seededChance.js'),
+    { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' },
+    'Internal modules are not importable'
   );
 
   test.equal(
