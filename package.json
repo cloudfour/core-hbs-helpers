@@ -36,7 +36,6 @@
     "moment": "2.31.0",
     "num2fraction": "1.2.2",
     "ramda": "0.32.0",
-    "require-dir": "1.2.0",
     "tinycolor2": "1.6.0"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@ const process = require('node:process');
 
 const fs = process.getBuiltinModule('node:fs');
 const path = process.getBuiltinModule('node:path');
+const url = process.getBuiltinModule('node:url');
 
 const tape = require('tape');
 
@@ -101,5 +102,22 @@ tape('exports', (test) => {
     EXPECTED_HELPERS.filter((name) => !readme.includes(`### \`${name}\``)),
     [],
     'Every helper has a section in the README'
+  );
+});
+
+tape('exports to ES modules', async (test) => {
+  const root = path.join(__dirname, '..', 'index.js');
+  const esm = await import(url.pathToFileURL(root).href);
+
+  test.deepEqual(
+    Object.keys(esm.default).toSorted(),
+    EXPECTED_HELPERS.toSorted(),
+    'The default import has every helper'
+  );
+
+  test.deepEqual(
+    EXPECTED_HELPERS.filter((name) => esm[name] !== helpers[name]),
+    [],
+    'Every helper is also a named import'
   );
 });
