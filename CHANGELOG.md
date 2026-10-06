@@ -33,6 +33,16 @@ but never tagged, so their links point at the version-bump commits instead.
   `index.js` by name. Add the `.js`, or import the package root
   ([#211](https://github.com/cloudfour/core-hbs-helpers/issues/211)).
 
+### Fixed
+
+- Importing the package root from an ES module crashed with `TypeError:
+  Cannot read properties of undefined (reading 'filename')`. The helper index
+  was built with `require-dir`, which relies on `module.parent`, and Node
+  doesn't set that when an ES module starts the import. The index now lists
+  every helper explicitly, which also makes them available as named imports:
+  `import { random } from '@cloudfour/hbs-helpers'`
+  ([#230](https://github.com/cloudfour/core-hbs-helpers/issues/230)).
+
 ## [0.12.0] - 2026-08-26
 
 ### Fixed

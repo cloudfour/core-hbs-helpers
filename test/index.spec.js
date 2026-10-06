@@ -117,3 +117,19 @@ tape('exports', (test) => {
     'Every helper has a section in the README'
   );
 });
+
+tape('exports to ES modules', async (test) => {
+  const esm = await import('@cloudfour/hbs-helpers');
+
+  test.deepEqual(
+    Object.keys(esm.default).toSorted(),
+    EXPECTED_HELPERS.toSorted(),
+    'The default import has every helper'
+  );
+
+  test.deepEqual(
+    EXPECTED_HELPERS.filter((name) => esm[name] !== helpers[name]),
+    [],
+    'Every helper is also a named import'
+  );
+});
