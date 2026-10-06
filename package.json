@@ -7,7 +7,14 @@
   "homepage": "https://github.com/cloudfour/core-hbs-helpers",
   "bugs": "https://github.com/cloudfour/core-hbs-helpers/issues",
   "author": "Cloud Four (http://cloudfour.com)",
+  "exports": {
+    ".": "./index.js",
+    "./lib/*.js": "./lib/*.js",
+    "./lib/internal/*": null,
+    "./package.json": "./package.json"
+  },
   "main": "./index.js",
+  "sideEffects": false,
   "engines": {
     "node": ">=22.13.0"
   },
