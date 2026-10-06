@@ -48,7 +48,7 @@ const EXPECTED_HELPERS = [
 ];
 
 tape('exports', (test) => {
-  test.plan(5);
+  test.plan(7);
 
   test.deepEqual(
     Object.keys(helpers).toSorted(),
@@ -79,6 +79,18 @@ tape('exports', (test) => {
     typeof helpers.svg.create,
     'function',
     'The svg helper exposes create(), as its docblock documents'
+  );
+
+  test.equal(
+    typeof helpers.random.create,
+    'function',
+    'The random helper exposes create(), as its docblock documents'
+  );
+
+  test.equal(
+    typeof helpers.randomItem.create,
+    'function',
+    'The randomItem helper exposes create(), as its docblock documents'
   );
 
   // The README is the documentation now, so a helper with no section there is
