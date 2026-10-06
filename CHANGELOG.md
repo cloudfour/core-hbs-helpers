@@ -6,14 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Note that while the version stays below `1.0.0`, the **minor** number
 carries breaking changes — `^0.11.0` will not pick up `0.12.0`.
 
-Everything below `Unreleased` was reconstructed after the fact from git history,
-release tags, and the `@since` annotations in `lib/`. Those entries record which
-helpers arrived in which release rather than every change each one contained, and
-releases before `0.6.1` predate this package's move to the `@cloudfour` scope, so
-they are not on npm under its current name. `0.9.0` and `0.10.0` were published
-but never tagged, so their links point at the version-bump commits instead.
+`0.11.0` and every release before it were reconstructed after the fact from git
+history, release tags, and the `@since` annotations in `lib/`. Those entries
+record which helpers arrived in which release rather than every change each one
+contained, and releases before `0.6.1` predate this package's move to the
+`@cloudfour` scope, so they are not on npm under its current name. `0.9.0` and
+`0.10.0` were published but never tagged, so their links point at the
+version-bump commits instead.
 
-## [Unreleased]
+## [0.13.0] - 2026-10-06
 
 ### Added
 
@@ -32,6 +33,9 @@ but never tagged, so their links point at the version-bump commits instead.
   without its extension (`lib/random`), the `lib` directory itself, and
   `index.js` by name. Add the `.js`, or import the package root
   ([#211](https://github.com/cloudfour/core-hbs-helpers/issues/211)).
+- The README now documents `svg.create()`, which has existed since 0.6.0 but
+  was never mentioned there
+  ([#226](https://github.com/cloudfour/core-hbs-helpers/issues/226)).
 
 ### Fixed
 
@@ -219,7 +223,7 @@ Initial release.
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
 
-[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...HEAD
+[0.13.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
 [0.10.0]: https://github.com/cloudfour/core-hbs-helpers/compare/690688a...5d1f7e7
