@@ -23,6 +23,16 @@ but never tagged, so their links point at the version-bump commits instead.
   each page separately. The default helpers are unchanged
   ([#225](https://github.com/cloudfour/core-hbs-helpers/issues/225)).
 
+### Changed
+
+- **Breaking.** `package.json` now has an `exports` field, so only the
+  package root and `@cloudfour/hbs-helpers/lib/<name>.js` can be imported.
+  Those are the two forms the README documents, and both keep working. Other
+  paths now fail with `ERR_PACKAGE_PATH_NOT_EXPORTED`, including a helper
+  without its extension (`lib/random`), the `lib` directory itself, and
+  `index.js` by name. Add the `.js`, or import the package root
+  ([#211](https://github.com/cloudfour/core-hbs-helpers/issues/211)).
+
 ### Fixed
 
 - Importing the package root from an ES module crashed with `TypeError:
