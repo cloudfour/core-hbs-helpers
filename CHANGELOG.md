@@ -16,6 +16,8 @@ version-bump commits instead.
 
 ## [Unreleased]
 
+## [0.13.1] - 2026-11-02
+
 ### Security
 
 - `handlebars` is now 4.7.10 or later, which fixes three advisories in 4.7.9
@@ -246,7 +248,8 @@ Initial release.
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
 
-[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.13.0...HEAD
+[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.13.1...HEAD
+[0.13.1]: https://github.com/cloudfour/core-hbs-helpers/compare/0.13.0...0.13.1
 [0.13.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
