@@ -14,6 +14,29 @@ contained, and releases before `0.6.1` predate this package's move to the
 `0.10.0` were published but never tagged, so their links point at the
 version-bump commits instead.
 
+## [Unreleased]
+
+### Security
+
+- `handlebars` is now 4.7.10 or later, which fixes three advisories in 4.7.9
+  and earlier: two critical JavaScript injections, via an own-property check
+  bypass
+  ([GHSA-p8wg-vrv2-v86f](https://github.com/advisories/GHSA-p8wg-vrv2-v86f))
+  and via AST type confusion in `compile`
+  ([GHSA-8r5x-fm3f-whwj](https://github.com/advisories/GHSA-8r5x-fm3f-whwj)),
+  and a medium one via unsafe inline embedding of precompiled templates
+  ([GHSA-xw65-4hp5-5hc7](https://github.com/advisories/GHSA-xw65-4hp5-5hc7))
+  ([#239](https://github.com/cloudfour/core-hbs-helpers/issues/239)).
+
+### Changed
+
+- Runtime dependencies are now version ranges (`^4.7.10`) instead of exact
+  versions (`4.7.10`), so future fixes in them reach you when you install or
+  update, without waiting for a release of this package. It also means npm can
+  share one copy of `handlebars` with your project instead of installing a
+  second one
+  ([#239](https://github.com/cloudfour/core-hbs-helpers/issues/239)).
+
 ## [0.13.0] - 2026-10-06
 
 ### Added
@@ -223,6 +246,7 @@ Initial release.
   `randomItem`, `timestamp`, `toFixed`, `toFraction`, `toJSON`, `toSlug`, and
   `toTitle` helpers.
 
+[Unreleased]: https://github.com/cloudfour/core-hbs-helpers/compare/0.13.0...HEAD
 [0.13.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/cloudfour/core-hbs-helpers/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/cloudfour/core-hbs-helpers/compare/5d1f7e7...0.11.0
