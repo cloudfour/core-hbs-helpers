@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # Publishing reads the repository and mints the OIDC token npm exchanges
+    # for short-lived publish credentials. Declaring these also drops every
+    # other permission the default token would carry. Without `id-token`, npm
+    # silently falls back to looking for a token and fails as unauthenticated.
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      # A release event checks out the release's tag.
+      - name: Checkout 🛎
+        uses: actions/checkout@v7.0.1
+      - name: Setup Node env 🏗
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+          # Required for trusted publishing, not just for tokens: npm only
+          # attempts the OIDC exchange when an .npmrc points at the registry.
+          registry-url: "https://registry.npmjs.org"
+      - name: Check the tag matches package.json 🏷
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="$(node --print 'require("./package.json").version')"
+          if [ "$TAG" != "$version" ]; then
+            echo "::error::The release's tag is $TAG, but package.json says $version. Run npm version to create the tag, then publish a release from it."
+            exit 1
+          fi
+      - name: Install dependencies 👨🏻‍💻
+        run: npm ci
+      - name: Run tests 🧪
+        run: npm test
+      # No npm credentials are passed here. `npm publish` detects the OIDC
+      # environment and authenticates against the trusted publisher configured
+      # on npmjs.com, which also adds a provenance statement. That
+      # configuration names this file, so renaming it means updating the
+      # package settings on npm to match.
+      - name: Publish to npm 📦
+        run: npm publish
