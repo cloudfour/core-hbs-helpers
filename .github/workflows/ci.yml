@@ -59,24 +59,9 @@ jobs:
           cache: "npm"
       - name: Install dependencies 👨🏻‍💻
         run: npm ci
-      # Asks npm for the oldest published release in each peer range rather
-      # than working it out from the range, which can name a version that was
-      # never published. npm leaves prereleases out of range matches, so every
-      # version here is a plain major.minor.patch.
+      # Installs the oldest published release each peer range allows. The
+      # action is shared in cloudfour/.github, whose README explains how.
       - name: Downgrade to the oldest supported peer dependencies ⬇️
-        run: |
-          specs="$(node --print '
-            const { execFileSync } = require("node:child_process");
-            const byVersion = (a, b) => {
-              const [x, y] = [a, b].map((version) => version.split(".").map(Number));
-              return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
-            };
-            Object.entries(require("./package.json").peerDependencies).map(([name, range]) => {
-              const published = [JSON.parse(execFileSync("npm", ["view", `${name}@${range}`, "version", "--json"]))].flat();
-              return `${name}@${published.sort(byVersion)[0]}`;
-            }).join(" ")
-          ')"
-          echo "Testing against $specs"
-          npm install --no-save $specs
+        uses: cloudfour/.github/actions/oldest-peer-dependencies@main
       - name: Run tests 🧪
         run: npm test
