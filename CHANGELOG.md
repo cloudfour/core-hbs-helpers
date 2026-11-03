@@ -16,6 +16,18 @@ version-bump commits instead.
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking.** `handlebars` is now a peer dependency (`^4.7.10`) instead of a
+  regular one, so these helpers use your project's own copy of Handlebars and
+  never install a second one. Add `handlebars` to your project's dependencies
+  if it isn't there already. npm 7 and later install it for you if it's
+  missing, but other package managers may not. If your project allows a
+  range, such as `^4.7.9`, npm updates it to 4.7.10 or later. If it pins an
+  older exact version, such as `4.7.9`, npm refuses to install this version
+  until you update it
+  ([#248](https://github.com/cloudfour/core-hbs-helpers/issues/248)).
+
 ## [0.13.1] - 2026-11-02
 
 ### Security

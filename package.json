@@ -38,7 +38,6 @@
   "dependencies": {
     "capitalize": "^2.0.4",
     "chance": "^1.1.13",
-    "handlebars": "^4.7.10",
     "ltx": "^3.1.2",
     "moment": "^2.31.0",
     "num2fraction": "^1.3.0",
@@ -48,7 +47,11 @@
   "devDependencies": {
     "@cloudfour/eslint-config": "29.0.0",
     "eslint": "10.14.0",
+    "handlebars": "4.7.10",
     "tap-spec": "5.0.0",
     "tape": "5.10.3"
+  },
+  "peerDependencies": {
+    "handlebars": "^4.7.10"
   }
 }
