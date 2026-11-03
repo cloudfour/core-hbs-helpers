@@ -8,8 +8,11 @@ documented below, with a runnable example.
 ## Usage
 
 ```sh
-npm install --save-dev @cloudfour/hbs-helpers
+npm install --save-dev @cloudfour/hbs-helpers handlebars
 ```
+
+`handlebars` is a peer dependency: the helpers use your project's copy of
+Handlebars, version 4.7.10 or later within 4.x.
 
 ### Using vanilla Handlebars
 
