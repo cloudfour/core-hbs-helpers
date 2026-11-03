@@ -24,3 +24,7 @@ Edit `engines.node` or `peerDependencies` in `package.json`. The CI jobs follow 
 - **Lowering it**, or adding support for another Node line or Handlebars major, is a new feature, as long as the new oldest-version job passes.
 
 Either way, add the change to `CHANGELOG.md`.
+
+## Release Process
+
+[How to publish an updated version](https://cloudfour.com/thinks/how-to-publish-an-updated-version-of-an-npm-package/)
